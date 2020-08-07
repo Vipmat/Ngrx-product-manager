@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-product-shell',
-  templateUrl: './product-shell.component.html',
-  styleUrls: ['./product-shell.component.css']
+  templateUrl: './product-shell.component.html'
 })
 export class ProductShellComponent implements OnInit {
 

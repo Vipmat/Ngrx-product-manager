@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
+import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { GenericValidator } from '../../shared/generic-validator';
+import { NumberValidators } from '../../shared/number.validator';
 
 @Component({
   selector: 'app-product-edit',
@@ -13,6 +15,16 @@ import { GenericValidator } from '../../shared/generic-validator';
 export class ProductEditComponent implements OnInit {
   pageTitle = 'Product Edit';
   errorMessage = '';
+  productForm: FormGroup;
+
+
+  product: Product | null;
+  sub: Subscription;
+
+  // Use with the generic validation message class
+  displayMessage: { [key: string]: string } = {};
+  private validationMessages: { [key: string]: { [key: string]: string}};
+  private genericValidator: GenericValidator;
 
   constructor(private fb: FormBuilder, private productService: ProductService) {
 
@@ -46,6 +58,9 @@ export class ProductEditComponent implements OnInit {
       starRating: ['', NumberValidators.range(1,5)],
       description: ''
     });
+
+    // Watch for changes to the currently selected product
+    //this.sub = this.productService.selectedProductChanges$.subscribe();
   }
 
 }
